@@ -6,20 +6,20 @@ import random
 
 trainY = 7.2
 
-def gen_initial(count, boardcount):
+#generates random sets of alighting and boarding passengers
+def gen_random(count, boardcount):
     
     return count
 
 def changeGoals(old, boardcount):
     p = old
     
-    for i in range(len(old)):
+    for i in range(boardcount):
         p[i][6] = 0.5
     for i in range(boardcount):
         p[i][4] = 10
-        p[i][5] = 10
-    for i in range(boardcount, len(old)):
-        p[i][5] = 0
+        p[i][5] = 9.8
+
 
     return p
 
@@ -50,9 +50,9 @@ def get_statistics(dataset, boarding, alighting, maxtime):
 
     avg_time = 0
     if failed != len(dataset):
-        avg_time = 
+        avg_time = totaltime/(len(dataset) - failed)
 
-    return [totalboard/(boarding * len(dataset)), totalalight/(alighting*len(dataset)), failed/len(dataset), totaltime/len(dataset)]
+    return [totalboard/(boarding * len(dataset)), totalalight/(alighting*len(dataset)), failed/len(dataset), avg_time]
 
 if __name__ == "__main__":
     # initial states, each entry is the position, velocity and goal of a pedestrian in the form of (px, py, vx, vy, gx, gy)
@@ -63,12 +63,12 @@ if __name__ == "__main__":
             [6.0, 5.0, 0.5, 0.5, 7.5, 6.5],
              [14.0, 5.0, 0.5, 0.5, 12.5, 6.5],
              [6.0, 6.5, 0.5, 0.5, 7.5, 6.5],
-            [14.0, 6.5, 0.5, 0.5, 12.5, 6.5],
-            [14.0, 9.0, 0.5, 0.5, 10.0, 7.0],
-             [16.0, 8.0, 0.5, 0.5, 10.0, 7.0],
-            [11.0, 8.0, 0.5, 0.5, 10.0, 7.0],
-             [7.0, 9.0, 0.5, 0.5, 10.0, 7.0],
-             [3.0, 8.0, 0.5, 0.5, 10.0, 7.0]
+            [13.0, 6.5, 0.5, 0.5, 12.5, 6.5],
+            [11.0, 9.0, 0.5, 0.5, 10.0, 0.0],
+             [9.0, 8.0, 0.5, 0.5, 10.0, 0.0],
+            [11.0, 8.0, 0.5, 0.5, 10.0, 0.0],
+             [10.0, 9.0, 0.5, 0.5, 10.0, 0.0],
+             [8.0, 8.0, 0.5, 0.5, 10.0, 0.0]
         ]
     )
 
@@ -83,17 +83,25 @@ if __name__ == "__main__":
         config_file=Path(__file__).resolve().parent.joinpath("traintest.toml"),
     )
     # update 80 steps
-    s.step(30)
+    s.step(20)
 
+    
+
+    for i in range(20):
+        print(str(s.peds.ped_states[-1][9][0]) + " " +  str(s.peds.ped_states[-1][9][1]))
+        s.step(1)
+
+    print("changing------------------")
     p = changeGoals(s.peds.ped_states[-1], 6)
+    s.peds.update(p, s.peds.groups)
 
-    s.peds.update(p, None)
-
-    s.step(120)
+    for i in range(80):
+        print(str(s.peds.ped_states[-1][9][0]) + " " +  str(s.peds.ped_states[-1][9][1]))
+        s.step(1)
 
     data = get_end_data(s.peds.ped_states[-1], 6, 110)
 
     print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " steps")
-    with psf.plot.SceneVisualizer(s, "images/traintest" + str(5)) as sv:
-        sv.animate()
+    #with psf.plot.SceneVisualizer(s, "images/traintest" + str(5)) as sv:
+     #   sv.animate()
 
