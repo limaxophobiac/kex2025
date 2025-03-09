@@ -1,7 +1,58 @@
+from os import stat
 from pathlib import Path
 import numpy as np
 import pysocialforce as psf
+import random
 
+trainY = 7.2
+
+def gen_initial(count, boardcount):
+    
+    return count
+
+def changeGoals(old, boardcount):
+    p = old
+    
+    for i in range(len(old)):
+        p[i][6] = 0.5
+    for i in range(boardcount):
+        p[i][4] = 10
+        p[i][5] = 10
+    for i in range(boardcount, len(old)):
+        p[i][5] = 0
+
+    return p
+
+def get_end_data(state, boardcount, step):
+    boardsuccess = 0
+    alightsuccess = 0
+    for i in range(boardcount):
+        if state[i][1] > trainY:
+            boardsuccess += 1
+    for i in range(boardcount, len(state)):
+        if state[i][1] < trainY:
+            alightsuccess += 1
+
+    return [boardsuccess, alightsuccess, step]
+
+def get_statistics(dataset, boarding, alighting, maxtime):
+    totalboard = 0
+    totalalight = 0
+    totaltime = 0
+    failed = 0
+    for i in dataset:
+        totalboard += dataset[i][0]
+        totalalight += dataset[i][1]
+        if dataset[i][2] != maxtime:
+            totaltime += dataset[i][2]
+        else:
+            failed += 1
+
+    avg_time = 0
+    if failed != len(dataset):
+        avg_time = 
+
+    return [totalboard/(boarding * len(dataset)), totalalight/(alighting*len(dataset)), failed/len(dataset), totaltime/len(dataset)]
 
 if __name__ == "__main__":
     # initial states, each entry is the position, velocity and goal of a pedestrian in the form of (px, py, vx, vy, gx, gy)
@@ -20,10 +71,10 @@ if __name__ == "__main__":
              [3.0, 8.0, 0.5, 0.5, 10.0, 7.0]
         ]
     )
-    # social groups informoation is represented as lists of indices of the state array
+
     # list of linear obstacles given in the form of (x_min, x_max, y_min, y_max)
     # obs = [[-1, -1, -1, 11], [3, 3, -1, 11]]
-    obs = [[0, 20, 10, 10], [0, 0, 7, 10], [20, 20, 7, 10], [11, 20, 7, 7], [0, 9, 7, 7]]
+    obs = [[0, 20, 10, 10], [0, 0, trainY, 10], [20, 20, trainY, 10], [10.75, 20, trainY, trainY], [0, 9.25, trainY, trainY]]
     # obs = None
     # initiate the simulator,
     s = psf.Simulator(
@@ -32,59 +83,17 @@ if __name__ == "__main__":
         config_file=Path(__file__).resolve().parent.joinpath("traintest.toml"),
     )
     # update 80 steps
-    
     s.step(30)
-    print(s.peds.ped_states[-1])
-    p = s.peds.ped_states[-1]
 
-    p[6][5] = 0.0
-    p[7][5] = 0.0
-    p[8][5] = 0.0
-    p[9][5] = 0.0
-    p[10][5] = 0.0
+    p = changeGoals(s.peds.ped_states[-1], 6)
 
+    s.peds.update(p, None)
 
-    p[6][3] = -0.5
-    p[7][3] = -0.5
-    p[8][3] = -0.5
-    p[9][3] = -0.5
-    p[10][3] = -0.5
+    s.step(120)
 
-    p[0][3] = 0.5
-    p[1][3] = 0.5
-    p[2][3] = 0.5
-    p[3][3] = 0.5
-    p[4][3] = 0.5
-    p[5][3] = 0.5
+    data = get_end_data(s.peds.ped_states[-1], 6, 110)
 
-    p[0][4] = 10.0
-    p[1][4] = 10.0
-    p[2][4] = 10.0
-    p[3][4] = 10.0
-    p[4][4] = 10.0
-    p[5][4] = 10.0
-
-    p[0][5] = 10.0
-    p[1][5] = 10.0
-    p[2][5] = 10.0
-    p[3][5] = 10.0
-    p[4][5] = 10.0
-    p[5][5] = 10.0
-
-
-
-
-    s2 = psf.Simulator(
-        p,
-        obstacles=obs,
-        config_file=Path(__file__).resolve().parent.joinpath("traintest.toml"),
-    )
-    with psf.plot.SceneVisualizer(s, "images/traintest1") as sv:
+    print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " steps")
+    with psf.plot.SceneVisualizer(s, "images/traintest" + str(5)) as sv:
         sv.animate()
-
-    s2.step(100)
-
-    with psf.plot.SceneVisualizer(s2, "images/traintest2") as sv:
-        sv.animate()
-        #sv.plot()
 
