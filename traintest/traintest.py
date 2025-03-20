@@ -5,11 +5,16 @@ import pysocialforce as psf
 import random
 
 trainY = 7.2
+doorwith = 1.5
+boardsplit = 0.5
+pedradius = 0.3
 
 #generates random sets of alighting and boarding passengers
-def gen_random(count, boardcount):
-    
-    return count
+def gen_random_leftright(count, boardcount):
+    passengers = []
+    for i in range(boardcount):
+        px = (9.5 - boardsplit - pedradius if (i % 2 == 0) else 10 + boardsplit + pedradius) + random()*0.5
+    return passengers
 
 def changeGoals(old, boardcount):
     p = old
@@ -56,8 +61,7 @@ def get_statistics(dataset, boarding, alighting, maxtime):
 
 if __name__ == "__main__":
     # initial states, each entry is the position, velocity and goal of a pedestrian in the form of (px, py, vx, vy, gx, gy)
-    initial_state = np.array(
-        [
+    passengers =         [
             [7.5, 6.5, 0.5, 0.5, 7.5, 6.5],
              [12.5, 6.5, 0.5, 0.5, 12.5, 6.5],
             [6.0, 5.0, 0.5, 0.5, 7.5, 6.5],
@@ -70,11 +74,11 @@ if __name__ == "__main__":
              [10.0, 9.0, 0.5, 0.5, 10.0, 0.0],
              [8.0, 8.0, 0.5, 0.5, 10.0, 0.0]
         ]
-    )
+    initial_state = np.array(passengers)
 
     # list of linear obstacles given in the form of (x_min, x_max, y_min, y_max)
     # obs = [[-1, -1, -1, 11], [3, 3, -1, 11]]
-    obs = [[0, 20, 10, 10], [0, 0, trainY, 10], [20, 20, trainY, 10], [10.75, 20, trainY, trainY], [0, 9.25, trainY, trainY]]
+    obs = [[0, 20, 10, 10], [0, 0, trainY, 10], [20, 20, trainY, 10], [10 + (doorwith/2), 20, trainY, trainY], [0, 10 - (doorwith/2), trainY, trainY]]
     # obs = None
     # initiate the simulator,
     s = psf.Simulator(
