@@ -14,6 +14,8 @@ def gen_random_leftright(count, boardcount):
     passengers = []
     for i in range(boardcount):
         px = (9.5 - boardsplit - pedradius if (i % 2 == 0) else 10 + boardsplit + pedradius) + random()*0.5
+        py = trainY - pedradius - i*(pedradius)
+
     return passengers
 
 def changeGoals(old, boardcount):
@@ -64,13 +66,13 @@ if __name__ == "__main__":
     passengers =         [
             [7.5, 6.5, 0.5, 0.5, 7.5, 6.5],
              [12.5, 6.5, 0.5, 0.5, 12.5, 6.5],
-            [6.0, 5.0, 0.5, 0.5, 7.5, 6.5],
-             [14.0, 5.0, 0.5, 0.5, 12.5, 6.5],
+            [7.5, 6.0, 0.5, 0.5, 7.5, 6.5],
+             [13.0, 6.0, 0.5, 0.5, 12.5, 6.5],
              [6.0, 6.5, 0.5, 0.5, 7.5, 6.5],
             [13.0, 6.5, 0.5, 0.5, 12.5, 6.5],
             [11.0, 9.0, 0.5, 0.5, 10.0, 0.0],
              [9.0, 8.0, 0.5, 0.5, 10.0, 0.0],
-            [11.0, 8.0, 0.5, 0.5, 10.0, 0.0],
+            [9.0, 8.5, 0.5, 0.5, 10.0, 0.0],
              [10.0, 9.0, 0.5, 0.5, 10.0, 0.0],
              [8.0, 8.0, 0.5, 0.5, 10.0, 0.0]
         ]
@@ -87,7 +89,7 @@ if __name__ == "__main__":
         config_file=Path(__file__).resolve().parent.joinpath("traintest.toml"),
     )
     # update 80 steps
-    s.step(20)
+    s.step(40)
 
     
 
@@ -107,5 +109,5 @@ if __name__ == "__main__":
 
     print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " steps")
     #with psf.plot.SceneVisualizer(s, "images/traintest" + str(5)) as sv:
-     #   sv.animate()
+       # sv.animate()
 
