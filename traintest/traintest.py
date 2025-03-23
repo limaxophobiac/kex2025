@@ -13,8 +13,22 @@ pedradius = 0.3
 def gen_random_leftright(count, boardcount):
     passengers = []
     for i in range(boardcount):
-        px = (9.5 - boardsplit - pedradius if (i % 2 == 0) else 10 + boardsplit + pedradius) + random()*0.5
+        px = (9.5 - boardsplit - pedradius if (i % 2 == 0) else 10 + boardsplit + pedradius) + random.random()*0.5
         py = trainY - pedradius - i*(pedradius)
+        vx = 0.5
+        vy = 0.5
+        gx = px
+        gy = py
+        passengers.append([px, py, vx, vy, gx, gy])
+
+    for i in range(count - boardcount):
+        px = (10 + (i + 1)*pedradius) if (i % 2 == 0) else (10 - (i +1)*pedradius)
+        py = trainY + pedradius + random.random()*(10 - pedradius - trainY)
+        vx = 0.5 if (i % 2 == 1) else -0.5
+        vy = -0.5
+        gx = 10
+        gy = 0
+        passengers.append([px, py, vx, vy, gx, gy])
 
     return passengers
 
@@ -22,6 +36,8 @@ def changeGoals(old, boardcount):
     p = old
     
     for i in range(boardcount):
+        p[i][2] = 0.5
+        p[i][3] = 0.5
         p[i][6] = 0.5
     for i in range(boardcount):
         p[i][4] = 10
@@ -69,14 +85,15 @@ if __name__ == "__main__":
             [7.5, 6.0, 0.5, 0.5, 7.5, 6.5],
              [13.0, 6.0, 0.5, 0.5, 12.5, 6.5],
              [6.0, 6.5, 0.5, 0.5, 7.5, 6.5],
-            [13.0, 6.5, 0.5, 0.5, 12.5, 6.5],
             [11.0, 9.0, 0.5, 0.5, 10.0, 0.0],
              [9.0, 8.0, 0.5, 0.5, 10.0, 0.0],
             [9.0, 8.5, 0.5, 0.5, 10.0, 0.0],
              [10.0, 9.0, 0.5, 0.5, 10.0, 0.0],
              [8.0, 8.0, 0.5, 0.5, 10.0, 0.0]
         ]
-    initial_state = np.array(passengers)
+
+    passengers2 = gen_random_leftright(10, 5)
+    initial_state = np.array(passengers2)
 
     # list of linear obstacles given in the form of (x_min, x_max, y_min, y_max)
     # obs = [[-1, -1, -1, 11], [3, 3, -1, 11]]
@@ -98,16 +115,16 @@ if __name__ == "__main__":
         s.step(1)
 
     print("changing------------------")
-    p = changeGoals(s.peds.ped_states[-1], 6)
+    p = changeGoals(s.peds.ped_states[-1], 5)
     s.peds.update(p, s.peds.groups)
 
     for i in range(80):
         print(str(s.peds.ped_states[-1][9][0]) + " " +  str(s.peds.ped_states[-1][9][1]))
         s.step(1)
 
-    data = get_end_data(s.peds.ped_states[-1], 6, 110)
+    data = get_end_data(s.peds.ped_states[-1], 5, 110)
 
     print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " steps")
-    #with psf.plot.SceneVisualizer(s, "images/traintest" + str(5)) as sv:
-       # sv.animate()
+    with psf.plot.SceneVisualizer(s, "images/traintest" + str(5)) as sv:
+       sv.animate()
 
