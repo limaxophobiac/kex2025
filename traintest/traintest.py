@@ -15,8 +15,8 @@ def gen_random_leftright(count, boardcount):
     for i in range(boardcount):
         px = (9.5 - boardsplit - pedradius if (i % 2 == 0) else 10 + boardsplit + pedradius) + random.random()*0.5
         py = trainY - pedradius - i*(pedradius)
-        vx = 0.5
-        vy = 0.5
+        vx = 1
+        vy = 1
         gx = px
         gy = py
         passengers.append([px, py, vx, vy, gx, gy])
@@ -24,10 +24,10 @@ def gen_random_leftright(count, boardcount):
     for i in range(count - boardcount):
         px = (10 + (i + 1)*pedradius) if (i % 2 == 0) else (10 - (i +1)*pedradius)
         py = trainY + pedradius + random.random()*(10 - pedradius - trainY)
-        vx = 0.5 if (i % 2 == 1) else -0.5
-        vy = -0.5
+        vx = 1 if (i % 2 == 1) else -1
+        vy = -1
         gx = 10
-        gy = trainY
+        gy = trainY + pedradius*2
         passengers.append([px, py, vx, vy, gx, gy])
 
     return passengers
@@ -35,9 +35,9 @@ def gen_random_leftright(count, boardcount):
 def startAlighting(old, boardcount):
     p = old
     for i in range(boardcount, len(old)):
-        p[i][2] = 0.5
-        p[i][3] = 0.5
-        p[i][6] = 0.5
+        p[i][2] = 1
+        p[i][3] = 1
+        p[i][6] = 1
         p[i][5] = 0
 
     return p
@@ -46,9 +46,9 @@ def startBoarding(old, boardcount):
     p = old
     
     for i in range(boardcount):
-        p[i][2] = 0.5
-        p[i][3] = 0.5
-        p[i][6] = 0.5
+        p[i][2] = 1
+        p[i][3] = 1
+        p[i][6] = 1
     for i in range(boardcount):
         p[i][4] = 10
         p[i][5] = 9.8
@@ -88,11 +88,11 @@ def get_statistics(dataset, boarding, alighting, maxtime):
 
 if __name__ == "__main__":
     # initial states, each entry is the position, velocity and goal of a pedestrian in the form of (px, py, vx, vy, gx, gy)
-    boarding = 12
-    alighting = 12
-    presteps = 50
-    midsteps = 50
-    poststeps = 50
+    boarding = 16
+    alighting = 14
+    presteps = 20
+    midsteps = 30
+    poststeps = 30
 
     passengers2 = gen_random_leftright(boarding + alighting, boarding)
     initial_state = np.array(passengers2)
@@ -125,6 +125,6 @@ if __name__ == "__main__":
     data = get_end_data(s.peds.ped_states[-1], boarding, presteps + midsteps + poststeps)
 
     print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " steps")
-    #with psf.plot.SceneVisualizer(s, "images/traintest" + str(5)) as sv:
-      #sv.animate()
+    with psf.plot.SceneVisualizer(s, "images/traintest" + str(boarding + alighting)) as sv:
+      sv.animate()
 
