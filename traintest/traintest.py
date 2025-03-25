@@ -27,12 +27,22 @@ def gen_random_leftright(count, boardcount):
         vx = 0.5 if (i % 2 == 1) else -0.5
         vy = -0.5
         gx = 10
-        gy = 0
+        gy = trainY
         passengers.append([px, py, vx, vy, gx, gy])
 
     return passengers
 
-def changeGoals(old, boardcount):
+def startAlighting(old, boardcount):
+    p = old
+    for i in range(boardcount, len(old)):
+        p[i][2] = 0.5
+        p[i][3] = 0.5
+        p[i][6] = 0.5
+        p[i][5] = 0
+
+    return p
+
+def startBoarding(old, boardcount):
     p = old
     
     for i in range(boardcount):
@@ -42,7 +52,6 @@ def changeGoals(old, boardcount):
     for i in range(boardcount):
         p[i][4] = 10
         p[i][5] = 9.8
-
 
     return p
 
@@ -79,20 +88,13 @@ def get_statistics(dataset, boarding, alighting, maxtime):
 
 if __name__ == "__main__":
     # initial states, each entry is the position, velocity and goal of a pedestrian in the form of (px, py, vx, vy, gx, gy)
-    passengers =         [
-            [7.5, 6.5, 0.5, 0.5, 7.5, 6.5],
-             [12.5, 6.5, 0.5, 0.5, 12.5, 6.5],
-            [7.5, 6.0, 0.5, 0.5, 7.5, 6.5],
-             [13.0, 6.0, 0.5, 0.5, 12.5, 6.5],
-             [6.0, 6.5, 0.5, 0.5, 7.5, 6.5],
-            [11.0, 9.0, 0.5, 0.5, 10.0, 0.0],
-             [9.0, 8.0, 0.5, 0.5, 10.0, 0.0],
-            [9.0, 8.5, 0.5, 0.5, 10.0, 0.0],
-             [10.0, 9.0, 0.5, 0.5, 10.0, 0.0],
-             [8.0, 8.0, 0.5, 0.5, 10.0, 0.0]
-        ]
+    boarding = 12
+    alighting = 12
+    presteps = 50
+    midsteps = 50
+    poststeps = 50
 
-    passengers2 = gen_random_leftright(10, 5)
+    passengers2 = gen_random_leftright(boarding + alighting, boarding)
     initial_state = np.array(passengers2)
 
     # list of linear obstacles given in the form of (x_min, x_max, y_min, y_max)
@@ -105,26 +107,24 @@ if __name__ == "__main__":
         obstacles=obs,
         config_file=Path(__file__).resolve().parent.joinpath("traintest.toml"),
     )
-    # update 80 steps
-    s.step(40)
 
-    
+    s.step(presteps)
 
-    for i in range(20):
-        print(str(s.peds.ped_states[-1][9][0]) + " " +  str(s.peds.ped_states[-1][9][1]))
-        s.step(1)
+    p1 = startAlighting(s.peds.ped_states[-1], boarding)
+    s.peds.update(p1, s.peds.groups)
+    s.step(midsteps)
 
     print("changing------------------")
-    p = changeGoals(s.peds.ped_states[-1], 5)
-    s.peds.update(p, s.peds.groups)
+    p2 = startBoarding(s.peds.ped_states[-1], boarding)
+    s.peds.update(p2, s.peds.groups)
 
-    for i in range(80):
+    for i in range(poststeps):
         print(str(s.peds.ped_states[-1][9][0]) + " " +  str(s.peds.ped_states[-1][9][1]))
         s.step(1)
 
-    data = get_end_data(s.peds.ped_states[-1], 5, 110)
+    data = get_end_data(s.peds.ped_states[-1], boarding, presteps + midsteps + poststeps)
 
     print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " steps")
-    with psf.plot.SceneVisualizer(s, "images/traintest" + str(5)) as sv:
-       sv.animate()
+    #with psf.plot.SceneVisualizer(s, "images/traintest" + str(5)) as sv:
+      #sv.animate()
 
