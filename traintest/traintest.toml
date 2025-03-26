@@ -26,11 +26,11 @@ n = 2
 n_prime = 3
 
 [obstacle_force]
-factor = 5.0
+factor = 8.0
 # the standard deviation of obstacle force
 sigma = 0.2
 # threshold to trigger this force
-threshold = 3.0
+threshold = 1.0
 
 [group_coherence_force]
 factor = 3.0
