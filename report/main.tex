@@ -1,0 +1,212 @@
+\documentclass{kththesis}
+
+\usepackage{blindtext} % This is just to get some nonsense text in this template, can be safely removed
+
+\usepackage{csquotes} % Recommended by biblatex
+\usepackage[style=numeric,sorting=none,backend=biber]{biblatex}
+\usepackage{amsmath} 
+\usepackage{esvect} 
+\usepackage{mathabx}
+\addbibresource{references.bib} % The file containing our references, in BibTeX format
+
+\title{DA150X VT25: First draft report}
+\alttitle{DA150X VT25: Första utkast rapport}
+\author{Joel Bolkert\\ Roger Chen}
+\email{osquar@kth.se}
+\supervisor{Christopher Peters}
+\examiner{Pawel Andrzej Herman}
+%\hostcompany{Företaget AB} % Remove this line if the project was not done at a host company
+\programme{Computer Science and Engineering}
+\school{School of Electrical Engineering and Computer Science}
+\date{\today}
+
+% Uncomment the next line to include cover generated at https://intra.kth.se/kth-cover?l=en
+% \kthcover{kth-cover.pdf}
+
+
+\begin{document}
+
+% Frontmatter includes the titlepage, abstracts and table-of-contents
+\frontmatter
+
+\titlepage
+
+\begin{abstract}
+  %English abstract goes here.
+
+  %\blindtext
+\end{abstract}
+
+
+\begin{otherlanguage}{swedish}
+  \begin{abstract}
+    %Träutensilierna i ett tryckeri äro ingalunda en oviktig faktor,
+    %för trevnadens, ordningens och ekonomiens upprätthållande, och
+    %dock är det icke sällan som sorgliga erfarenheter göras på grund
+    %af det oförstånd med hvilket kaster, formbräden och regaler
+    %tillverkas och försäljas Kaster som äro dåligt hopkomna och af
+    %otillräckligt.
+  \end{abstract}
+\end{otherlanguage}
+
+
+\tableofcontents
+
+
+% Mainmatter is where the actual contents of the thesis goes
+\mainmatter
+
+
+\chapter{Introduction}
+The use of subway systems as an affordable, high-capacity option of travel is widespread across many large cities where millions of people bustle daily among the platforms to train carts. As much as the speed or acceleration of the trains, the capacity of such systems is determined by the station stop times \parencite{harris2010}. A major factor that affects the length of stop times is the alighting and boarding (A\&B) actions of the passengers which determine the necessary length of these stops. The study of various A\&B factors may thus be greatly beneficial as it provides insight to how A\&B practices can be improved to attain greater efficiency and reduce congestion.
+
+\noindent
+\\
+While the efficiency of A\&B actions are constrained by the physical limitations imposed by the stations and trains themselves, they are also determined by the collective and individual actions of passengers. As such there is a benefit to examining not only the impact of physical limitations on stop time but also that of the actions of the passengers.
+
+\noindent
+\\
+There are customary practices for passengers during A\&B that are often but not universally observed in practice, such as advising boarding passengers to wait at both sides of the doors for the alighting passengers to exit before boarding. Such practices are generally considered common sense but their effectiveness should stand to be evaluated and alternative practices considered. The effect of a subset of passengers who don’t follow the general rules and practices has on overall efficiency is also of interest, as there will always be those who do not follow the common A\&B practices within a community.
+
+\section{Research Question}
+
+\subsection{}
+Given the standard practice of boarding passengers waiting at the sides of subway doors for alighting passengers to exit, what is the consequence of different percentages of boarding passengers breaking this custom and waiting right in front of the doors?
+
+\subsection{}
+Would alternate A\&B practices improve A\&B times, f.ex. boarding passengers waiting and entering from one side of the door instead of both?
+
+\subsection{}
+Does the answer to either of the previous questions vary depending on the width of the train doors, within the range of door-widths seen in subway trains?
+
+\section{Approach}
+To answer the questions in the previous subsection, a crowd simulation was created with the help of the PySocialForce implementation of the social force model \parencite{pysocialforce}. Test scenarios were created based on models used in previous studies that analyzed subway A\&B behaviour using social force models and statistics for passenger volumes and corresponding A\&B times.
+
+\section{Scope}
+Alighting and boarding actions are in practice limited by the physical layout of subway stations, where obstacles such as support pillars and limited platform area can place restrictions on passenger movement. As these factors vary considerably even for stations on the same line and are very hard to generalise, our simulation will assume an idealised platform that always has enough space for passengers.
+
+\noindent
+\\
+Beyond the specific variations in passenger practices studied, the simulation also assumes passengers as mostly homogenous in terms of speed and perception and does not account for mobility impaired passengers.
+
+\noindent
+\\
+\textit{Note: this may or may not be part of the final report: We have also made an inquiry to SL (Stockholms Länstrafik) to get statistics for the subway systems in Stockholm. The idea is to use values to limit our parameters to be within a 'realistic scope'. The most relevant value being number of passengers on the subways as an upper limit.}
+
+\section{Outline}
+The remainder of this paper is organized as follows; chapter 2 will seek to explain the theory behind the crowd simulation used in the study, it will also set it in relation to previous studies on subway passenger A\&B behaviour which the paper depends on. 
+
+\chapter{Background}
+\section{Crowd Simulation}
+Crowd simulations are computer models of pedestrian behaviour, often used to study and analyze the dynamics of crowd behaviour in various environments, enabling researchers to study emergent behaviours, evaluate evacuation plans, or optimize designs for pedestrian flow. \parencite{zhou2010}
+
+\noindent
+\\
+The types of crowd simulation can broadly be categorized as \textit{flow-based}, \textit{entity-based}, and \textit{agent-based}. \parencite{zhou2010}
+
+\noindent
+\\
+\textbf{Flow-based} models simulate crowds as continuous fluids, effectively ignore individuals, and are as such mostly used for modelling very large and dense crowds.
+
+\noindent
+\\
+A typical example of \textbf{entity-based} models is particle models where each pedestrian is modeled as a physical particle following mathematical rules, such as the social force model for pedestrian mechanics used in this paper.
+
+\noindent
+\\
+\textbf{Agent-based} models where each individual is simulated as an independent intelligent agent with a set of decision rules. The distinction between agent-based and entity-based models is not always clear as the decision rules in the agent based models can sometimes be rather simple and the mathematical rules in the entity-based models can be rather complex.
+
+\section{Social Force model}
+For our simulations we will use the \textit{Social force model for pedestrian dynamics} \parencite{helbing1995}, which we in this paper will refer to as the “social force model” for ease. The social force model can be viewed as an application of the idea that the movement of pedestrians can be predicted through variables that represent the internal motivations for individuals to act a certain way. In the original study by Helbing and Molnár the social force model is defined as the sum of an acceleration term, three terms representing external \textit{repulsive effects} and \textit{attractive effects} as well as a \textit{fluctuations} term that accounts for randomness within a pedestrian's behavior. 
+
+\noindent
+\\
+The previously described “acceleration term” for a pedestrians movement can be written as: 
+\[
+\vv{F}_a^0(\vv{v}_a, {v}_a^0 \vv{e}_a) 
+\] 
+Colloquially, the acceleration term can be described as the desired velocity of a pedestrian in the absence of external influence. Specifically, this term shows that without external influences, the pedestrian will move with a desired velocity ${v}_a^0 \vv{e}_a$. The variable $\vv{v}_a(t)$ represents the pedestrian $\alpha$’s current actual velocity at time t as the velocity at times will deviate from (but eventually reapproach) the desired velocity ${v}_a^0 \vv{e}_a$. 
+
+\noindent
+\\
+The first of two terms describing the repulsive effects of the outside factors can is defined as:
+\[
+\sum_B \vec{F}_{\alpha B} \left( \vec{e}_{\alpha}, \vec{r}_{\alpha} - \vec{r}_{B}^\alpha\right).
+\]
+In simple terms it represents the sum of the repulsive force of every border B of a physical object which a pedestrian will attempt to keep a distance from. The newly introduced variable $\vec{r}_\alpha$ represents the current position of the pedestrian and $\vec{r}_B^\alpha$ represents the point of border B which is the closest to pedestrian $\alpha$.
+
+\noindent
+\\
+The second term describing an outside repulsive effect can be defined as: 
+\[
+\sum_\beta \vec{F}_{\alpha \beta} \left( \vec{e}_{\alpha}, \vec{r}_{\alpha} - \vec{r}_{\beta}\right).
+\] 
+This term represents the sum of the repulsive effects which each other pedestrian $\beta$ has on a given pedestrian $\alpha$. The newly introduced variable $\vec{r}_\beta$ represents the current position of the pedestrian $\beta$.
+
+\noindent
+\\
+The third term represents the external attractive effect which a pedestrian $\beta$ has on a pedestrian $\alpha$ and is defined as:
+\[
+\sum_i \vec{F}_{\alpha i} \left( \vec{e}_{\alpha}, \vec{r}_{\alpha} - \vec{r}_{i}, t \right).
+\]
+The variables for the term are very similar to that of the repulsive force of other pedestrians, with the exception of the time-variable ‘$t$’. The inclusion of $t$ is due to the fact that interest is a variable that typically declines with time $t$.
+
+
+\noindent
+\\
+The sum of the terms above alongside a fluctuations term gives us the expression:
+\begin{align*}
+\vv{F}_a(t) := 
+\vv{F}_a^0(\vv{v}_a, {v}_a^0 \vv{e}_a) 
+&+ \sum_{\beta} \vv{F}_{a\beta}(\vv{e}_a, \vv{r}_a - \vv{r}_{\beta}) \\
+&+ \sum_{B} \vv{F}_{aB}(\vv{e}_a, \vv{r}_a - \vv{r_B^a}) \\
+&+ \sum_{i} \vv{F}_{ai}(\vv{e}_a, \vv{r}_a - \vv{r}_i, t) \\
+&+ fluctuations
+\end{align*}
+
+\noindent
+The original paper from Helbing and Molnár includes an expansion of the fluctuations term. However, the inclusion of the fluctuations term will be omitted for this study as our work will be based on deterministic simulations. Thus the version of the social forces model that we will refer to for the rest of the paper will be one that does not include the fluctuations term, that is:
+
+\noindent
+\\
+\begin{align*}
+\vv{F}_a(t) := 
+\vv{F}_a^0(\vv{v}_a, {v}_a^0 \vv{e}_a) 
+&+ \sum_{\beta} \vv{F}_{a\beta}(\vv{e}_a, \vv{r}_a - \vv{r}_{\beta}) \\
++ \sum_{B} \vv{F}_{aB}(\vv{e}_a, \vv{r}_a - \vv{r_B^a}) 
+&+ \sum_{i} \vv{F}_{ai}(\vv{e}_a, \vv{r}_a - \vv{r}_i, t)
+\end{align*}
+
+
+\section{Related Work}
+
+\subsection{Boarding Movement Laws in the Subway}
+This study \parencite{chen2020} focuses on how the social force model can be tuned to better represent the movement of passengers in the subway. In short; passengers in the subway have reduced expectations of personal space and a strong desire to board and alight before the train leaves the station in comparison to normal pedestrian situations. To represent this it is concluded in the study that the desired force that accelerates passengers toward their destination should be doubled for boarding and alighting passengers until they have entered or exited the train doors to represent observed behaviour. It was additionally concluded that the repulsive ‘wall’ force of objects generally needs to be set at a significantly reduced range compared to other situations to match observed behaviour of subway passengers and enable smooth boarding and alighting.
+
+\noindent
+\\
+Similar to our study, they also simulated an alternate boarding method by designating half the doors to be exclusively for boarding and the other half exclusively for alighting passengers. A scheme which in their simulations improved the average A\&B time by 2.5 seconds.
+
+
+\subsection{Passenger attributes and A\&B efficiency}
+A study \parencite{yang2021} that seeks to find the effect of heterogeneous attributes among subway passengers on A\&B efficiency using social force based crowd simulation. As part of the study the effect of different ‘wait-times’ for boarding passengers was estimated. As in how many of the alighting passengers they allowed to exit before starting to board and its result on total A\&B time. As boarding passengers attempting to board the moment the doors open would intuitively be similar to boarding passengers waiting right in front of the doors instead of at the sides this is a close analogue to our first research sub-question.
+
+\chapter{Methods}
+
+\chapter{Results}
+
+\chapter{Discussion}
+
+\chapter{Conclusions}
+
+% Print the bibliography (and make it appear in the table of contents)
+\printbibliography[heading=bibintoc]
+
+\appendix
+
+\chapter{Something Extra}
+
+% Tailmatter inserts the back cover page (if enabled)
+\tailmatter
+
+\end{document}
