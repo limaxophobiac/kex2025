@@ -72,7 +72,7 @@ def get_statistics(dataset, boarding, alighting, maxtime):
     totalalight = 0
     totaltime = 0
     failed = 0
-    for i in dataset:
+    for i in range(len(dataset)):
         totalboard += dataset[i][0]
         totalalight += dataset[i][1]
         if dataset[i][2] != maxtime:
@@ -94,58 +94,66 @@ if __name__ == "__main__":
     midsteps = 20
     poststeps = 50
 
-    passengers2 = gen_random_leftright(boarding + alighting, boarding)
-    initial_state = np.array(passengers2)
+    
 
     # list of linear obstacles given in the form of (x_min, x_max, y_min, y_max)
     # obs = [[-1, -1, -1, 11], [3, 3, -1, 11]]
     obs = [[0, 20, 10, 10], [0, 0, trainY, 10], [20, 20, trainY, 10], [10 + (doorwith/2), 20, trainY, trainY], [0, 10 - (doorwith/2), trainY, trainY]]
     # obs = None
     # initiate the simulator,
-    s = psf.Simulator(
-        initial_state,
-        obstacles=obs,
-        config_file=Path(__file__).resolve().parent.joinpath("traintest.toml"),
-    )
+    stats = []
+    for i in range(10):
+        passengers2 = gen_random_leftright(boarding + alighting, boarding)
+        initial_state = np.array(passengers2)
 
-    s.step(presteps)
+        s = psf.Simulator(
+            initial_state,
+            obstacles=obs,
+            config_file=Path(__file__).resolve().parent.joinpath("traintest.toml"),
+        )
 
-    p1 = startAlighting(s.peds.ped_states[-1], boarding)
-    s.peds.update(p1, s.peds.groups)
-    for i in range(midsteps):
-        s.step(1)
-        if (i % 3 == 0):
-            changed = False
-            for j in range (boarding, len(s.peds.ped_states[-1])):
-                if s.peds.ped_states[-1][j][1] < 7 and s.peds.ped_states[-1][j][5] == 5:
-                    s.peds.ped_states[-1][j][5] = -5
-                    changed = True
-            if changed:
-                s.peds.update(s.peds.ped_states[-1], s.peds.groups)
+        s.step(presteps)
 
-    p2 = startBoarding(s.peds.ped_states[-1], boarding)
-    s.peds.update(p2, s.peds.groups)
+        p1 = startAlighting(s.peds.ped_states[-1], boarding)
+        s.peds.update(p1, s.peds.groups)
+        for i in range(midsteps):
+            s.step(1)
+            if (i % 3 == 0):
+                changed = False
+                for j in range (boarding, len(s.peds.ped_states[-1])):
+                    if s.peds.ped_states[-1][j][1] < 7 and s.peds.ped_states[-1][j][5] == 5:
+                        s.peds.ped_states[-1][j][5] = -5
+                        changed = True
+                if changed:
+                    s.peds.update(s.peds.ped_states[-1], s.peds.groups)
 
-    for i in range(poststeps):
-        #print(str(s.peds.ped_states[-1][9][0]) + " " +  str(s.peds.ped_states[-1][9][1]))
-        s.step(1)
-        if (i % 3 == 0):
-            changed = False
-            for j in range (boarding, len(s.peds.ped_states[-1])):
-                if s.peds.ped_states[-1][j][1] < 7 and s.peds.ped_states[-1][j][5] == 5:
-                    s.peds.ped_states[-1][j][5] = -5
-                    changed = True
-            for j in range (boarding):
-                if s.peds.ped_states[-1][j][1] > trainY + pedradius and s.peds.ped_states[-1][j][4] == 10:
-                    s.peds.ped_states[-1][j][5] = 9
-                    s.peds.ped_states[-1][j][4] = (6 if j % 2 == 0 else 14)
-                    changed = True
-            if changed:
-                s.peds.update(s.peds.ped_states[-1], s.peds.groups)
+        p2 = startBoarding(s.peds.ped_states[-1], boarding)
+        s.peds.update(p2, s.peds.groups)
 
-    data = get_end_data(s.peds.ped_states[-1], boarding, (midsteps + poststeps)/2)
+        for i in range(poststeps):
+            #print(str(s.peds.ped_states[-1][9][0]) + " " +  str(s.peds.ped_states[-1][9][1]))
+            s.step(1)
+            if (i % 3 == 0):
+                changed = False
+                for j in range (boarding, len(s.peds.ped_states[-1])):
+                    if s.peds.ped_states[-1][j][1] < 7 and s.peds.ped_states[-1][j][5] == 5:
+                        s.peds.ped_states[-1][j][5] = -5
+                        changed = True
+                for j in range (boarding):
+                    if s.peds.ped_states[-1][j][1] > trainY + pedradius and s.peds.ped_states[-1][j][4] == 10:
+                        s.peds.ped_states[-1][j][5] = 9
+                        s.peds.ped_states[-1][j][4] = (6 if j % 2 == 0 else 14)
+                        changed = True
+                if changed:
+                    s.peds.update(s.peds.ped_states[-1], s.peds.groups)
 
-    print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " seconds")
+        data = get_end_data(s.peds.ped_states[-1], boarding, (midsteps + poststeps)/2)
+
+        print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " seconds")
+        stats.append(data)
+
+    statistics = get_statistics(stats, boarding, alighting, 35)
+    print("Percentage Boarded: " + str(statistics[0]*100) + " Percentage alighted: " + str(statistics[1]*100))
     #with psf.plot.SceneVisualizer(s, "images/traintest" + str(boarding + alighting)) as sv:
-     # sv.animate()
+      #sv.animate()
 
