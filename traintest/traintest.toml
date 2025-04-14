@@ -7,11 +7,11 @@ agent_radius = 0.25
 max_speed_multiplier = 1.35
 
 [desired_force]
-factor = 2.0
+factor = 1.25
 # The relaxation distance of the goal
 goal_threshold = 0.2
 # How long the relaxation process would take
-relaxation_time = 0.35
+relaxation_time = 0.2
 
 
 [social_force]
@@ -30,7 +30,7 @@ factor = 8.0
 # the standard deviation of obstacle force
 sigma = 0.2
 # threshold to trigger this force
-threshold = 1.0
+threshold = 0.3
 
 [group_coherence_force]
 factor = 3.0

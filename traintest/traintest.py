@@ -10,16 +10,25 @@ boardsplit = 0.5
 pedradius = 0.3
 
 #generates random sets of alighting and boarding passengers
-def gen_random_leftright(count, boardcount):
+def gen_random_leftright(count, boardcount, frontcount):
     passengers = []
-    for i in range(boardcount):
+    for i in range(frontcount):
+        px = 9.5 - pedradius + random.random() 
+        py = trainY - pedradius - i*(pedradius)
+        vx = 0
+        vy = 1
+        gx = px
+        gy = py
+        passengers.append([px, py, vx, vy, gx, gy, 1.35])
+
+    for i in range(boardcount-frontcount):
         px = (9.5 - boardsplit - pedradius if (i % 2 == 0) else 10 + boardsplit + pedradius) + random.random()*0.5
         py = trainY - pedradius - i*(pedradius)
         vx = 0
         vy = 1
         gx = px
         gy = py
-        passengers.append([px, py, vx, vy, gx, gy])
+        passengers.append([px, py, vx, vy, gx, gy, 1.35])
 
     for i in range(count - boardcount):
         px = (10 + (i + 1)*pedradius) if (i % 2 == 0) else (10 - (i +1)*pedradius)
@@ -28,7 +37,7 @@ def gen_random_leftright(count, boardcount):
         vy = 0
         gx = 10
         gy = trainY + pedradius*2
-        passengers.append([px, py, vx, vy, gx, gy])
+        passengers.append([px, py, vx, vy, gx, gy, 1.35])
 
     return passengers
 
@@ -36,9 +45,9 @@ def startAlighting(old, boardcount):
     p = old
     for i in range(boardcount, len(old)):
         p[i][2] = 0
-        p[i][3] = -1
+        p[i][3] = 1
         p[i][6] = 1.35
-        p[i][5] = 5
+        p[i][5] = 5.5
 
     return p
 
@@ -68,6 +77,8 @@ def get_end_data(state, boardcount, step):
     return [boardsuccess, alightsuccess, step]
 
 def get_statistics(dataset, boarding, alighting, maxtime):
+    if (boarding == 0):
+        boarding = 1
     totalboard = 0
     totalalight = 0
     totaltime = 0
@@ -91,7 +102,7 @@ if __name__ == "__main__":
     boarding = 16
     alighting = 14
     presteps = 15
-    midsteps = 10
+    midsteps = 40
     poststeps = 50
 
     
@@ -102,70 +113,86 @@ if __name__ == "__main__":
     # obs = None
     # initiate the simulator,
     stats = []
-    for i in range(200):
-        passengers2 = gen_random_leftright(boarding + alighting, boarding)
+    for i in range(30):
+        passengers2 = gen_random_leftright(boarding + alighting, boarding,0)
         initial_state = np.array(passengers2)
+        groups = []
+        for i in range(boarding + alighting):
+            groups.append([i])
 
         s = psf.Simulator(
             initial_state,
+            groups = groups,
             obstacles=obs,
             config_file=Path(__file__).resolve().parent.joinpath("traintest.toml"),
         )
 
-        s.step(presteps)
+        collisioncount = 0
+        for i in range(presteps):
+            s.step(1)
+
         actualSteps = 0
         alighted = 0
         p1 = startAlighting(s.peds.ped_states[-1], boarding)
+        
         s.peds.update(p1, s.peds.groups)
-        for i in range(midsteps):
+        while(alighted < alighting/2 and actualSteps < 100):
             actualSteps += 1
             s.step(1)
-
             changed = False
             for j in range (boarding, len(s.peds.ped_states[-1])):
-                if s.peds.ped_states[-1][j][1] < trainY - pedradius and s.peds.ped_states[-1][j][5] == 5:
+                if s.peds.ped_states[-1][j][1] < trainY and s.peds.ped_states[-1][j][5] == 5.5:
                     s.peds.ped_states[-1][j][5] = -5
+                    s.peds.ped_states[-1][j][6] = 1.35
                     changed = True
                     alighted += 1
             if changed:
                 s.peds.update(s.peds.ped_states[-1], s.peds.groups)
-            if (alighted == alighting):
-                break
 
         p2 = startBoarding(s.peds.ped_states[-1], boarding)
         s.peds.update(p2, s.peds.groups)
 
-        
         boarded = 0
-
+        
         for i in range(poststeps):
             actualSteps += 1
             #print(str(s.peds.ped_states[-1][9][0]) + " " +  str(s.peds.ped_states[-1][9][1]))
             s.step(1)
             changed = False
             for j in range (boarding, len(s.peds.ped_states[-1])):
-                if s.peds.ped_states[-1][j][1] < trainY - pedradius and s.peds.ped_states[-1][j][5] == 5:
+                if s.peds.ped_states[-1][j][1] < trainY and s.peds.ped_states[-1][j][5] == 5.5:
                     s.peds.ped_states[-1][j][5] = -5
                     changed = True
                     alighted += 1
             for j in range (boarding):
                 if s.peds.ped_states[-1][j][1] > trainY + pedradius and s.peds.ped_states[-1][j][4] == 10:
                     s.peds.ped_states[-1][j][5] = 9
-                    s.peds.ped_states[-1][j][4] = (6 if j % 2 == 0 else 14)
+                    s.peds.ped_states[-1][j][4] = (7 if j % 2 == 0 else 13)
                     changed = True
                     boarded += 1
             if changed:
                 s.peds.update(s.peds.ped_states[-1], s.peds.groups)
+
+    #        for j in range(0, len(s.peds.ped_states[-1])):
+    #            for k in range(len(s.peds.ped_states[-1])):
+     #               if (j == k):
+   #                     continue
+  #                  if (((s.peds.ped_states[-1][j][0] - s.peds.ped_states[-1][k][0])**2 + (s.peds.ped_states[-1][j][1] - s.peds.ped_states[-1][k][1])**2) < 0.2**2):
+ #                       collisioncount += 1
+
             if (boarded == boarding and alighted == alighting):
                 break
+  #      print("collisions " + str(collisioncount))
 
-        data = get_end_data(s.peds.ped_states[-1], boarding, (actualSteps)/2)
+        data = get_end_data(s.peds.ped_states[-1], boarding, actualSteps/2.5)
 
         #print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " seconds")
         stats.append(data)
+   #     with psf.plot.SceneVisualizer(s, "images/traintest" + str(boarding + alighting)) as sv:
+     #      sv.animate()
 
     statistics = get_statistics(stats, boarding, alighting, 35)
     print("Percentage Boarded: " + str(statistics[0]*100) + " Percentage alighted: " + str(statistics[1]*100) + " Average time: " + str(statistics[3]) + " seconds")
-    #with psf.plot.SceneVisualizer(s, "images/traintest" + str(boarding + alighting)) as sv:
-      #sv.animate()
 
+
+0.5
