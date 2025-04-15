@@ -7,7 +7,7 @@ agent_radius = 0.25
 max_speed_multiplier = 1.35
 
 [desired_force]
-factor = 1.25
+factor = 1.0
 # The relaxation distance of the goal
 goal_threshold = 0.2
 # How long the relaxation process would take
