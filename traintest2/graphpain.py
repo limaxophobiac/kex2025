@@ -27,8 +27,8 @@ all_wait_b5_a5_r32_t = [8.2, 8.0, 8.0, 7.8, 7.6, 7.4]
 all_wait_b5_a5_r48_t = [10.8, 9.6, 9.6, 9.4, 9.2, 9.2]
 all_wait_b5_a5_r64_t = [13.8, 11.6, 11.4, 11.2, 11.6, 11.6]
 
-all_wait_b5_a5_r0_d = [0.0, 0.0, 0.0, 0.0, 0,0, 0.0]
-all_wait_b5_a5_r16_d = [0.0, 0.0, 0.0, 0.0, 0,0, 0.0]
+all_wait_b5_a5_r0_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+all_wait_b5_a5_r16_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 all_wait_b5_a5_r32_d = [0.0, 0.01, 0.0, 0.01, 0.01, 0.0]
 all_wait_b5_a5_r48_d = [0.03, 0.03, 0.03, 0.03, 0.03, 0.02]
 all_wait_b5_a5_r64_d = [0.07, 0.14, 0.13, 0.11, 0.13, 0.19]
@@ -39,10 +39,10 @@ all_wait_b10_a10_r32_t = [17.2, 13.8, 13.4, 13.2, 13.6, 13.2]
 all_wait_b10_a10_r48_t = [22.6, 19.8, 18.2, 17.2, 18.0, 17.6]
 all_wait_b10_a10_r64_t = [35.4, 25.2, 25.8, 24.0, 26.2, 26.6]
 
-all_wait_b10_a10_r0_d = [0.0, 0.0, 0.0, 0.0, 0,0, 0.0]
-all_wait_b10_a10_r16_d = [0.0, 0.0, 0.0, 0.0, 0,0, 0.0]
+all_wait_b10_a10_r0_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+all_wait_b10_a10_r16_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 all_wait_b10_a10_r32_d = [0.01, 0.01, 0.03, 0.03, 0.03, 0.03]
-all_wait_b10_a10_r48_d = [0.04, 0.15, 0.15, 0.15, 0.12, 0.19]
+all_wait_b10_a10_r48_d = [0.04, 0.15, 0.15, 0.15, 0.15, 0.19]
 all_wait_b10_a10_r64_d = [0.3, 0.35, 0.38, 0.45, 0.45, 0.49]
 
 #plt.plot(waited_for, all_wait_b15_a15_r0_t, '.', label= '0r')
@@ -53,19 +53,19 @@ all_wait_b10_a10_r64_d = [0.3, 0.35, 0.38, 0.45, 0.45, 0.49]
 
 xval = np.linspace(waited_for[0], waited_for[-1], num=100)
 
-lin0 = np.polyfit(waited_for, all_wait_b15_a15_r0_d, 3)
+lin0 = np.polyfit(waited_for, all_wait_b5_a5_r0_d, 2)
 poly0 = np.polyval(lin0, xval)
 
-lin16 = np.polyfit(waited_for, all_wait_b15_a15_r16_d, 3)
+lin16 = np.polyfit(waited_for, all_wait_b5_a5_r16_d, 2)
 poly16 = np.polyval(lin16, xval)
 
-lin32 = np.polyfit(waited_for, all_wait_b15_a15_r32_d, 3)
+lin32 = np.polyfit(waited_for, all_wait_b5_a5_r32_d, 2)
 poly32 = np.polyval(lin32, xval)
 
-lin48 = np.polyfit(waited_for, all_wait_b15_a15_r48_d, 3)
+lin48 = np.polyfit(waited_for, all_wait_b5_a5_r48_d, 2)
 poly48 = np.polyval(lin48, xval)
 
-lin64 = np.polyfit(waited_for, all_wait_b15_a15_r64_d, 3)
+lin64 = np.polyfit(waited_for, all_wait_b5_a5_r64_d, 2)
 poly64 = np.polyval(lin64, xval)
 
 plt.plot(xval, poly0, '-', label='0rPoly')
@@ -75,7 +75,7 @@ plt.plot(xval, poly48, '-', label='48rPoly')
 plt.plot(xval, poly64, '-', label='64rPoly')
 
 plt.xlabel("N")
-plt.ylabel("chance of deadlock")
+plt.ylabel("deadlock chance")
 
 plt.legend()
 plt.show()
