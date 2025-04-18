@@ -51,7 +51,7 @@ all_wait_b15_a15_r32_t = [26.6, 23.0, 22.6, 22.4, 22.8, 23.2]
 all_wait_b15_a15_r48_t = [35.2, 30.4, 28.2, 29.8, 30.6, 30.6]
 all_wait_b15_a15_r64_t = [48.6, 45.0, 42.4, 43.2, 44.4, 44.4]
 
-rulebreaking = [0, 2, 4, 6, 8, 10]
+rulebreaking = [0, 1, 2, 3, 4, 5]
 
 b15_a15_r0_rb0_t = [15.0, 15.8, 15.6, 15.6, 15.4, 15.0]
 b15_a15_r0_rb0_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
@@ -83,6 +83,21 @@ b10_a10_r48_rb_d = [0.16, 0.18, 0.19, 0.21, 0.17, 0.21]
 b10_a10_r64_rb_t = [25.6, 26.6, 27.8, 26.6, 27.8, 29.4]
 b10_a10_r64_rb_d = [0.31, 0.42, 0.53, 0.51, 0.53, 0.58]
 
+b5_a5_r0_rb_t = [6.4, 6.2, 6.0, 5.8, 5.2, 4.2]
+b5_a5_r0_rb_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+b5_a5_r16_rb_t = [7.2, 6.8, 6.6, 6.4, 5.8, 5.0]
+b5_a5_r16_rb_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+b5_a5_r32_rb_t = [8.2, 7.8, 7.6, 7.4, 6.4, 6.0]
+b5_a5_r32_rb_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+b5_a5_r48_rb_t = [9.4, 9.4, 8.8, 8.6, 8.0, 7.2]
+b5_a5_r48_rb_d = [0.04, 0.03, 0.01, 0.04, 0.02, 0.03]
+
+b5_a5_r64_rb_t = [12.0, 12.2, 11.4, 10.8, 9.8, 10.2]
+b5_a5_r64_rb_d = [0.16, 0.17, 0.17, 0.13, 0.21, 0.22]
+
 #plt.plot(rulebreaking, b10_a10_r0_rb_d, '.', label= '0r')
 #plt.plot(rulebreaking, b10_a10_r16_rb_d, '.', label= '16r')
 #plt.plot(rulebreaking, b10_a10_r32_rb_d, '.', label= '32r')
@@ -91,19 +106,19 @@ b10_a10_r64_rb_d = [0.31, 0.42, 0.53, 0.51, 0.53, 0.58]
 
 xval = np.linspace(rulebreaking[0], rulebreaking[-1], num=100)
 
-lin0 = np.polyfit(rulebreaking, b10_a10_r0_rb_d, 3)
+lin0 = np.polyfit(rulebreaking, b5_a5_r0_rb_t, 3)
 poly0 = np.polyval(lin0, xval)
 
-lin16 = np.polyfit(rulebreaking, b10_a10_r16_rb_d, 3)
+lin16 = np.polyfit(rulebreaking, b5_a5_r16_rb_t, 3)
 poly16 = np.polyval(lin16, xval)
 
-lin32 = np.polyfit(rulebreaking, b10_a10_r32_rb_d, 3)
+lin32 = np.polyfit(rulebreaking, b5_a5_r32_rb_t, 3)
 poly32 = np.polyval(lin32, xval)
 
-lin48 = np.polyfit(rulebreaking, b10_a10_r48_rb_d, 3)
+lin48 = np.polyfit(rulebreaking, b5_a5_r48_rb_t, 3)
 poly48 = np.polyval(lin48, xval)
 
-lin64 = np.polyfit(rulebreaking, b10_a10_r64_rb_d, 3)
+lin64 = np.polyfit(rulebreaking, b5_a5_r64_rb_t, 3)
 poly64 = np.polyval(lin64, xval)
 
 plt.plot(xval, poly0, '-', label='0rPoly')
@@ -113,7 +128,7 @@ plt.plot(xval, poly48, '-', label='48rPoly')
 plt.plot(xval, poly64, '-', label='64rPoly')
 
 plt.xlabel("rule breakers")
-plt.ylabel("chance of deadlock")
+plt.ylabel("total A&B time")
 
 plt.legend()
 plt.show()
