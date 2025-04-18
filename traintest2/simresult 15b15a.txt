@@ -4,24 +4,28 @@ boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 
 boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 15.94 seconds failed: 0.0 waiting for 40.0 of passengers before board, remaining in cart: 0 median time: 16.0
 boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 15.99 seconds failed: 0.0 waiting for 20.0 of passengers before board, remaining in cart: 0 median time: 16.2
 boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 15.89 seconds failed: 0.0 waiting for 0.0 of passengers before board, remaining in cart: 0 median time: 16.2
+
 boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 22.39 seconds failed: 0.0 waiting for 100 of passengers before board, remaining in cart: 16 median time: 21.2
 boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 18.66 seconds failed: 0.0 waiting for 80.0 of passengers before board, remaining in cart: 16 median time: 18.6
 boarding: 15 alighting: 15 Percentage Boarded: 99.96 Percentage alighted: 100.0 average time: 18.76 seconds failed: 0.01 waiting for 60.0 of passengers before board, remaining in cart: 16 median time: 18.2
 boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 99.96 average time: 18.83 seconds failed: 0.01 waiting for 40.0 of passengers before board, remaining in cart: 16 median time: 19.0
 boarding: 15 alighting: 15 Percentage Boarded: 99.91 Percentage alighted: 100.0 average time: 19.29 seconds failed: 0.01 waiting for 20.0 of passengers before board, remaining in cart: 16 median time: 18.8
-boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 19.04 seconds failed: 0.0 waiting for 0.0 of passengers before board, remaining in cart: 16 median time: 18.8
+boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 19.04 seconds failed: 0.01 waiting for 0.0 of passengers before board, remaining in cart: 16 median time: 18.8
+
 boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 28.49 seconds failed: 0.0 waiting for 100 of passengers before board, remaining in cart: 32 median time: 26.6
 boarding: 15 alighting: 15 Percentage Boarded: 99.82 Percentage alighted: 99.91 average time: 24.37 seconds failed: 0.04 waiting for 80.0 of passengers before board, remaining in cart: 32 median time: 23.0
 boarding: 15 alighting: 15 Percentage Boarded: 99.78 Percentage alighted: 99.91 average time: 23.55 seconds failed: 0.05 waiting for 60.0 of passengers before board, remaining in cart: 32 median time: 22.6
 boarding: 15 alighting: 15 Percentage Boarded: 99.6 Percentage alighted: 99.96 average time: 22.99 seconds failed: 0.06 waiting for 40.0 of passengers before board, remaining in cart: 32 median time: 22.4
 boarding: 15 alighting: 15 Percentage Boarded: 99.24 Percentage alighted: 99.96 average time: 23.01 seconds failed: 0.11 waiting for 20.0 of passengers before board, remaining in cart: 32 median time: 22.8
 boarding: 15 alighting: 15 Percentage Boarded: 99.47 Percentage alighted: 99.91 average time: 23.91 seconds failed: 0.09 waiting for 0.0 of passengers before board, remaining in cart: 32 median time: 23.2
+
 boarding: 15 alighting: 15 Percentage Boarded: 98.8 Percentage alighted: 99.82 average time: 36.01 seconds failed: 0.15 waiting for 100 of passengers before board, remaining in cart: 48 median time: 35.2
 boarding: 15 alighting: 15 Percentage Boarded: 99.07 Percentage alighted: 99.87 average time: 31.01 seconds failed: 0.15 waiting for 80.0 of passengers before board, remaining in cart: 48 median time: 30.4
 boarding: 15 alighting: 15 Percentage Boarded: 98.44 Percentage alighted: 99.78 average time: 29.26 seconds failed: 0.21 waiting for 60.0 of passengers before board, remaining in cart: 48 median time: 28.2
 boarding: 15 alighting: 15 Percentage Boarded: 97.2 Percentage alighted: 99.29 average time: 29.21 seconds failed: 0.37 waiting for 40.0 of passengers before board, remaining in cart: 48 median time: 29.8
 boarding: 15 alighting: 15 Percentage Boarded: 96.27 Percentage alighted: 99.47 average time: 31.03 seconds failed: 0.44 waiting for 20.0 of passengers before board, remaining in cart: 48 median time: 30.6
 boarding: 15 alighting: 15 Percentage Boarded: 95.87 Percentage alighted: 99.47 average time: 30.1 seconds failed: 0.49 waiting for 0.0 of passengers before board, remaining in cart: 48 median time: 30.6
+
 boarding: 15 alighting: 15 Percentage Boarded: 96.13 Percentage alighted: 99.47 average time: 46.39 seconds failed: 0.43 waiting for 100 of passengers before board, remaining in cart: 64 median time: 48.6
 boarding: 15 alighting: 15 Percentage Boarded: 95.6 Percentage alighted: 99.29 average time: 41.45 seconds failed: 0.48 waiting for 80.0 of passengers before board, remaining in cart: 64 median time: 45.0
 boarding: 15 alighting: 15 Percentage Boarded: 94.62 Percentage alighted: 99.2 average time: 39.42 seconds failed: 0.58 waiting for 60.0 of passengers before board, remaining in cart: 64 median time: 42.4
