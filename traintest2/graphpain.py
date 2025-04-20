@@ -149,27 +149,27 @@ all_right_b15_a15_r48_d = [0.22, 0.37, 0.45, 0.52, 0.63, 0.59]
 all_right_b15_a15_r64_t = [50.0, 44.2, 41.8, 40.8, 45.4, 47.8]
 all_right_b15_a15_r64_d = [0.56, 0.65, 0.77, 0.83, 0.88, 0.93]
 
-#plt.plot(rulebreaking, b10_a10_r0_rb_d, '.', label= '0r')
-#plt.plot(rulebreaking, b10_a10_r16_rb_d, '.', label= '16r')
-#plt.plot(rulebreaking, b10_a10_r32_rb_d, '.', label= '32r')
-#plt.plot(rulebreaking, b10_a10_r48_rb_d, '.', label= '48r')
-#plt.plot(rulebreaking, b10_a10_r64_rb_d, '.', label= '64r')
+#plt.plot(waited_for, all_right_b10_a10_r0_t, '.', label= '0r')
+#plt.plot(waited_for, all_right_b10_a10_r16_t, '.', label= '16r')
+#plt.plot(waited_for, all_right_b10_a10_r32_t, '.', label= '32r')
+#plt.plot(waited_for, all_right_b10_a10_r48_t, '.', label= '48r')
+#plt.plot(waited_for, all_right_b10_a10_r64_t, '.', label= '64r')
 
-xval = np.linspace(rulebreaking[0], rulebreaking[-1], num=100)
+xval = np.linspace(waited_for[0], waited_for[-1], num=100)
 
-lin0 = np.polyfit(rulebreaking, b5_a5_r0_rb_t, 3)
+lin0 = np.polyfit(waited_for, all_right_b5_a5_r0_d, 3)
 poly0 = np.polyval(lin0, xval)
 
-lin16 = np.polyfit(rulebreaking, b5_a5_r16_rb_t, 3)
+lin16 = np.polyfit(waited_for, all_right_b5_a5_r16_d, 3)
 poly16 = np.polyval(lin16, xval)
 
-lin32 = np.polyfit(rulebreaking, b5_a5_r32_rb_t, 3)
+lin32 = np.polyfit(waited_for, all_right_b5_a5_r32_d, 3)
 poly32 = np.polyval(lin32, xval)
 
-lin48 = np.polyfit(rulebreaking, b5_a5_r48_rb_t, 3)
+lin48 = np.polyfit(waited_for, all_right_b5_a5_r48_d, 3)
 poly48 = np.polyval(lin48, xval)
 
-lin64 = np.polyfit(rulebreaking, b5_a5_r64_rb_t, 3)
+lin64 = np.polyfit(waited_for, all_right_b5_a5_r64_d, 3)
 poly64 = np.polyval(lin64, xval)
 
 plt.plot(xval, poly0, '-', label='0rPoly')
@@ -178,8 +178,8 @@ plt.plot(xval, poly32, '-', label='32rPoly')
 plt.plot(xval, poly48, '-', label='48rPoly')
 plt.plot(xval, poly64, '-', label='64rPoly')
 
-plt.xlabel("rule breakers")
-plt.ylabel("total A&B time")
+plt.xlabel("N")
+plt.ylabel("deadlock chance")
 
 plt.legend()
 plt.show()
