@@ -39,7 +39,7 @@ def gen_random_rightside(count, boardcount, frontcount, remaining_passengers):
 
     for i in range(count - boardcount):
         px = (10 + (i + 1)*pedradius) if (i % 2 == 0) else (10 - (i +1)*pedradius)
-        py = trainY + 0.5 + random.random()*(10 - 0.5 - trainY)
+        py = trainY + 0.5 + random.random()*(10 - 1 - trainY)
         vx = 0.1 if (i % 2 == 1) else -0.1
         vy = 0
         gx = 10
@@ -86,7 +86,7 @@ def gen_random_leftright(count, boardcount, frontcount, remaining_passengers):
 
     for i in range(count - boardcount):
         px = (10 + (i + 1)*pedradius) if (i % 2 == 0) else (10 - (i +1)*pedradius)
-        py = trainY + 0.5 + random.random()*(10 - 0.5 - trainY)
+        py = trainY + 0.5 + random.random()*(10 - 1 - trainY)
         vx = 0.1 if (i % 2 == 1) else -0.1
         vy = 0
         gx = 10
@@ -135,7 +135,7 @@ def startBoarding(old, boardcount, rulebreaking):
         p[i][3] = 0.1
         p[i][6] = 1.35
     for i in range(rulebreaking, boardcount):
-        p[i][4] = 10 - pedradius*2 #Only for right board
+        p[i][4] = 10
         p[i][5] = trainY + pedradius*6
 
     return p
@@ -181,8 +181,8 @@ def get_statistics(dataset, boarding, alighting, maxtime):
 
 if __name__ == "__main__":
     # initial states, each entry is the position, velocity and goal of a pedestrian in the form of (px, py, vx, vy, gx, gy)
-    boarding = 5
-    alighting = 5
+    boarding = 10
+    alighting = 10
     presteps = 20
     midsteps = 40
     poststeps = 300
@@ -198,7 +198,8 @@ if __name__ == "__main__":
     obs = [[0, 20, 10, 10], [0, 0, trainY, 10], [20, 20, trainY, 10], [10 + (doorwith/2), 20, trainY, trainY], [0, 10 - (doorwith/2), trainY, trainY],
            [10 + (doorwith/2), 10 + (doorwith/2), trainY, trainY + 0.5], [10 + (doorwith/2), 20, trainY + 0.5, trainY + 0.5],
            [20, 20, trainY, trainY + 0.5], [10 - (doorwith/2), 10 - (doorwith/2), trainY, trainY + 0.5], [0, 10 - (doorwith/2), trainY + 0.5, trainY + 0.5],
-           [0, 0, trainY, trainY + 0.5]]
+           [0, 0, trainY, trainY + 0.5], [20, 20, 10, 9.5], [10 - (doorwith/2), 10 - (doorwith/2), 10, 9.5], [0, 10 - (doorwith/2), 9.5, 9.5],
+           [10 + (doorwith/2), 20, 9.5, 9.5], [10 + (doorwith/2), 10 + (doorwith/2), 10.0, 9.5]]
     # obs = None
     # initiate the simulator,
     for p in range(5):
@@ -211,7 +212,7 @@ if __name__ == "__main__":
             stats = []
             
             for i in range(150):
-                passengers2 = gen_random_rightside(boarding + alighting, boarding, rulebreaking, remaining_passengers)
+                passengers2 = gen_random_leftright(boarding + alighting, boarding, rulebreaking, remaining_passengers)
                 initial_state = np.array(passengers2)
                 groups = []
                 for i in range(boarding + alighting):
@@ -267,7 +268,7 @@ if __name__ == "__main__":
                             changed = True
                             alighted += 1
                     for j in range (boarding):
-                        if s.peds.ped_states[-1][j][1] > trainY + pedradius and s.peds.ped_states[-1][j][4] == 10 - pedradius*2:
+                        if s.peds.ped_states[-1][j][1] > trainY + pedradius and s.peds.ped_states[-1][j][4] == 10:
                             s.peds.ped_states[-1][j][5] = 9
                             s.peds.ped_states[-1][j][4] = (7 if j % 2 == 0 else 13)
                             changed = True
@@ -288,10 +289,10 @@ if __name__ == "__main__":
 
                 data = get_end_data(s.peds.ped_states[-1], boarding, actualSteps/5)
 
-               # print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " seconds")
+                print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " seconds")
                 stats.append(data)
-               # with psf.plot.SceneVisualizer(s, "images/traintest" + str(boarding + alighting) + "new") as sv:
-               #    sv.animate()
+                with psf.plot.SceneVisualizer(s, "images/traintest" + str(boarding + alighting) + "right side") as sv:
+                   sv.animate()
 
             statistics = get_statistics(stats, boarding, alighting, 60)
             print("boarding: " + str(boarding) + " alighting: " + str(alighting) + " Percentage Boarded: " + str(round(statistics[0]*100, 2)) + " Percentage alighted: " + str(round(statistics[1]*100,2)) + " average time: " + str(round(statistics[3], 2)) + " seconds" + " failed: " + str(round(statistics[2], 2)) + " waiting for " + str(round(waitpercent*100, 2)) + " of passengers before board, remaining in cart: " + str(remaining_passengers) +" median time: " + str(round(statistics[4],2)) + " rulebreakers: " + str(rulebreaking))
