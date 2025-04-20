@@ -1,0 +1,136 @@
+boarding: 10 alighting: 10 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 10.32 seconds failed: 0.0 waiting for 100.0 of passengers before board, remaining in cart: 0 median time: 10.2 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 8.69 seconds failed: 0.0 waiting for 80.0 of passengers before board, remaining in cart: 0 median time: 8.6 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 8.38 seconds failed: 0.0 waiting for 60.0 of passengers before board, remaining in cart: 0 median time: 8.2 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 8.21 seconds failed: 0.0 waiting for 40.0 of passengers before board, remaining in cart: 0 median time: 8.0 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 8.07 seconds failed: 0.0 waiting for 20.0 of passengers before board, remaining in cart: 0 median time: 8.0 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 8.13 seconds failed: 0.0 waiting for 0.0 of passengers before board, remaining in cart: 0 median time: 8.0 rulebreakers: 0
+deadlockarray: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+timearray: [10.2, 8.6, 8.2, 8.0, 8.0, 8.0]
+boarding: 10 alighting: 10 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 12.58 seconds failed: 0.0 waiting for 100.0 of passengers before board, remaining in cart: 16 median time: 11.6 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 10.17 seconds failed: 0.0 waiting for 80.0 of passengers before board, remaining in cart: 16 median time: 9.6 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 99.93 Percentage alighted: 100.0 average time: 10.05 seconds failed: 0.01 waiting for 60.0 of passengers before board, remaining in cart: 16 median time: 9.6 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 99.87 Percentage alighted: 100.0 average time: 9.52 seconds failed: 0.01 waiting for 40.0 of passengers before board, remaining in cart: 16 median time: 9.0 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 9.81 seconds failed: 0.0 waiting for 20.0 of passengers before board, remaining in cart: 16 median time: 9.4 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 9.94 seconds failed: 0.0 waiting for 0.0 of passengers before board, remaining in cart: 16 median time: 9.4 rulebreakers: 0
+deadlockarray: [0.0, 0.0, 0.01, 0.01, 0.0, 0.0]
+timearray: [11.6, 9.6, 9.6, 9.0, 9.4, 9.4]
+boarding: 10 alighting: 10 Percentage Boarded: 99.87 Percentage alighted: 100.0 average time: 17.04 seconds failed: 0.01 waiting for 100.0 of passengers before board, remaining in cart: 32 median time: 15.2 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 99.73 Percentage alighted: 100.0 average time: 12.9 seconds failed: 0.03 waiting for 80.0 of passengers before board, remaining in cart: 32 median time: 12.2 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 99.8 Percentage alighted: 99.87 average time: 12.5 seconds failed: 0.03 waiting for 60.0 of passengers before board, remaining in cart: 32 median time: 11.4 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 99.67 Percentage alighted: 99.8 average time: 12.66 seconds failed: 0.05 waiting for 40.0 of passengers before board, remaining in cart: 32 median time: 11.6 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 99.53 Percentage alighted: 99.87 average time: 13.05 seconds failed: 0.05 waiting for 20.0 of passengers before board, remaining in cart: 32 median time: 11.2 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 99.73 Percentage alighted: 99.93 average time: 13.09 seconds failed: 0.03 waiting for 0.0 of passengers before board, remaining in cart: 32 median time: 11.8 rulebreakers: 0
+deadlockarray: [0.01, 0.03, 0.03, 0.05, 0.05, 0.03]
+timearray: [15.2, 12.2, 11.4, 11.6, 11.2, 11.8]
+boarding: 10 alighting: 10 Percentage Boarded: 99.0 Percentage alighted: 99.87 average time: 22.88 seconds failed: 0.09 waiting for 100.0 of passengers before board, remaining in cart: 48 median time: 21.0 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 98.13 Percentage alighted: 99.73 average time: 17.73 seconds failed: 0.18 waiting for 80.0 of passengers before board, remaining in cart: 48 median time: 16.0 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 98.0 Percentage alighted: 99.93 average time: 18.28 seconds failed: 0.17 waiting for 60.0 of passengers before board, remaining in cart: 48 median time: 16.2 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 97.07 Percentage alighted: 99.8 average time: 17.29 seconds failed: 0.24 waiting for 40.0 of passengers before board, remaining in cart: 48 median time: 16.0 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 96.8 Percentage alighted: 99.53 average time: 16.57 seconds failed: 0.28 waiting for 20.0 of passengers before board, remaining in cart: 48 median time: 16.0 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 97.27 Percentage alighted: 99.67 average time: 16.87 seconds failed: 0.26 waiting for 0.0 of passengers before board, remaining in cart: 48 median time: 16.2 rulebreakers: 0
+deadlockarray: [0.09, 0.18, 0.17, 0.24, 0.28, 0.26]
+timearray: [21.0, 16.0, 16.2, 16.0, 16.0, 16.2]
+boarding: 10 alighting: 10 Percentage Boarded: 95.6 Percentage alighted: 99.27 average time: 31.12 seconds failed: 0.31 waiting for 100.0 of passengers before board, remaining in cart: 64 median time: 31.8 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 93.93 Percentage alighted: 99.33 average time: 22.06 seconds failed: 0.49 waiting for 80.0 of passengers before board, remaining in cart: 64 median time: 21.4 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 91.33 Percentage alighted: 98.47 average time: 22.2 seconds failed: 0.59 waiting for 60.0 of passengers before board, remaining in cart: 64 median time: 25.0 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 91.27 Percentage alighted: 98.73 average time: 21.58 seconds failed: 0.57 waiting for 40.0 of passengers before board, remaining in cart: 64 median time: 23.0 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 91.8 Percentage alighted: 98.93 average time: 23.51 seconds failed: 0.55 waiting for 20.0 of passengers before board, remaining in cart: 64 median time: 25.0 rulebreakers: 0
+boarding: 10 alighting: 10 Percentage Boarded: 90.4 Percentage alighted: 98.67 average time: 22.82 seconds failed: 0.62 waiting for 0.0 of passengers before board, remaining in cart: 64 median time: 23.0 rulebreakers: 0
+deadlockarray: [0.31, 0.49, 0.59, 0.57, 0.55, 0.62]
+timearray: [31.8, 21.4, 25.0, 23.0, 25.0, 23.0]
+
+
+boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 17.47 seconds failed: 0.0 waiting for 100.0 of passengers before board, remaining in cart: 0 median time: 17.4 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 14.24 seconds failed: 0.0 waiting for 80.0 of passengers before board, remaining in cart: 0 median time: 14.2 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 13.79 seconds failed: 0.0 waiting for 60.0 of passengers before board, remaining in cart: 0 median time: 13.8 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 14.08 seconds failed: 0.0 waiting for 40.0 of passengers before board, remaining in cart: 0 median time: 14.2 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 14.48 seconds failed: 0.0 waiting for 20.0 of passengers before board, remaining in cart: 0 median time: 14.6 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 14.84 seconds failed: 0.0 waiting for 0.0 of passengers before board, remaining in cart: 0 median time: 14.8 rulebreakers: 0
+deadlockarray: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+timearray: [17.4, 14.2, 13.8, 14.2, 14.6, 14.8]
+boarding: 15 alighting: 15 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 23.91 seconds failed: 0.0 waiting for 100.0 of passengers before board, remaining in cart: 16 median time: 20.8 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 99.96 Percentage alighted: 100.0 average time: 18.18 seconds failed: 0.01 waiting for 80.0 of passengers before board, remaining in cart: 16 median time: 17.4 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 99.87 Percentage alighted: 100.0 average time: 17.3 seconds failed: 0.02 waiting for 60.0 of passengers before board, remaining in cart: 16 median time: 16.8 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 99.91 Percentage alighted: 100.0 average time: 17.67 seconds failed: 0.01 waiting for 40.0 of passengers before board, remaining in cart: 16 median time: 17.2 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 99.96 Percentage alighted: 99.87 average time: 17.98 seconds failed: 0.03 waiting for 20.0 of passengers before board, remaining in cart: 16 median time: 17.6 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 99.82 Percentage alighted: 99.96 average time: 18.08 seconds failed: 0.03 waiting for 0.0 of passengers before board, remaining in cart: 16 median time: 17.2 rulebreakers: 0
+deadlockarray: [0.0, 0.01, 0.02, 0.01, 0.03, 0.03]
+timearray: [20.8, 17.4, 16.8, 17.2, 17.6, 17.2]
+boarding: 15 alighting: 15 Percentage Boarded: 99.69 Percentage alighted: 99.91 average time: 27.46 seconds failed: 0.05 waiting for 100.0 of passengers before board, remaining in cart: 32 median time: 25.6 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 99.47 Percentage alighted: 99.91 average time: 23.21 seconds failed: 0.09 waiting for 80.0 of passengers before board, remaining in cart: 32 median time: 22.0 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 98.93 Percentage alighted: 99.87 average time: 23.08 seconds failed: 0.14 waiting for 60.0 of passengers before board, remaining in cart: 32 median time: 22.0 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 98.62 Percentage alighted: 99.78 average time: 22.1 seconds failed: 0.21 waiting for 40.0 of passengers before board, remaining in cart: 32 median time: 21.8 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 98.44 Percentage alighted: 99.69 average time: 23.13 seconds failed: 0.24 waiting for 20.0 of passengers before board, remaining in cart: 32 median time: 23.0 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 98.22 Percentage alighted: 99.82 average time: 22.89 seconds failed: 0.23 waiting for 0.0 of passengers before board, remaining in cart: 32 median time: 22.6 rulebreakers: 0
+deadlockarray: [0.05, 0.09, 0.14, 0.21, 0.24, 0.23]
+timearray: [25.6, 22.0, 22.0, 21.8, 23.0, 22.6]
+boarding: 15 alighting: 15 Percentage Boarded: 98.27 Percentage alighted: 99.73 average time: 35.6 seconds failed: 0.22 waiting for 100.0 of passengers before board, remaining in cart: 48 median time: 35.0 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 96.58 Percentage alighted: 99.91 average time: 29.87 seconds failed: 0.37 waiting for 80.0 of passengers before board, remaining in cart: 48 median time: 29.6 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 96.4 Percentage alighted: 99.73 average time: 29.89 seconds failed: 0.45 waiting for 60.0 of passengers before board, remaining in cart: 48 median time: 29.2 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 94.93 Percentage alighted: 99.64 average time: 29.17 seconds failed: 0.52 waiting for 40.0 of passengers before board, remaining in cart: 48 median time: 29.2 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 93.2 Percentage alighted: 99.56 average time: 30.57 seconds failed: 0.63 waiting for 20.0 of passengers before board, remaining in cart: 48 median time: 30.8 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 93.6 Percentage alighted: 99.56 average time: 29.0 seconds failed: 0.59 waiting for 0.0 of passengers before board, remaining in cart: 48 median time: 30.8 rulebreakers: 0
+deadlockarray: [0.22, 0.37, 0.45, 0.52, 0.63, 0.59]
+timearray: [35.0, 29.6, 29.2, 29.2, 30.8, 30.8]
+boarding: 15 alighting: 15 Percentage Boarded: 92.44 Percentage alighted: 99.42 average time: 43.0 seconds failed: 0.56 waiting for 100.0 of passengers before board, remaining in cart: 64 median time: 50.0 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 92.13 Percentage alighted: 99.2 average time: 39.96 seconds failed: 0.65 waiting for 80.0 of passengers before board, remaining in cart: 64 median time: 44.2 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 90.04 Percentage alighted: 99.07 average time: 37.17 seconds failed: 0.77 waiting for 60.0 of passengers before board, remaining in cart: 64 median time: 41.8 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 87.42 Percentage alighted: 98.84 average time: 34.55 seconds failed: 0.83 waiting for 40.0 of passengers before board, remaining in cart: 64 median time: 40.8 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 84.22 Percentage alighted: 97.33 average time: 35.12 seconds failed: 0.88 waiting for 20.0 of passengers before board, remaining in cart: 64 median time: 45.4 rulebreakers: 0
+boarding: 15 alighting: 15 Percentage Boarded: 83.91 Percentage alighted: 96.93 average time: 32.68 seconds failed: 0.93 waiting for 0.0 of passengers before board, remaining in cart: 64 median time: 47.8 rulebreakers: 0
+deadlockarray: [0.56, 0.65, 0.77, 0.83, 0.88, 0.93]
+timearray: [50.0, 44.2, 41.8, 40.8, 45.4, 47.8]
+
+
+
+
+
+
+
+
+
+
+
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 5.57 seconds failed: 0.0 waiting for 100.0 of passengers before board, remaining in cart: 0 median time: 5.6 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 5.08 seconds failed: 0.0 waiting for 80.0 of passengers before board, remaining in cart: 0 median time: 5.0 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 5.12 seconds failed: 0.0 waiting for 60.0 of passengers before board, remaining in cart: 0 median time: 5.2 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 4.94 seconds failed: 0.0 waiting for 40.0 of passengers before board, remaining in cart: 0 median time: 5.0 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 4.77 seconds failed: 0.0 waiting for 20.0 of passengers before board, remaining in cart: 0 median time: 4.8 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 4.62 seconds failed: 0.0 waiting for 0.0 of passengers before board, remaining in cart: 0 median time: 4.6 rulebreakers: 0
+deadlockarray: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+timearray: [5.6, 5.0, 5.2, 5.0, 4.8, 4.6]
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 6.13 seconds failed: 0.0 waiting for 100.0 of passengers before board, remaining in cart: 16 median time: 6.2 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 5.84 seconds failed: 0.0 waiting for 80.0 of passengers before board, remaining in cart: 16 median time: 5.8 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 5.81 seconds failed: 0.0 waiting for 60.0 of passengers before board, remaining in cart: 16 median time: 5.8 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 5.53 seconds failed: 0.0 waiting for 40.0 of passengers before board, remaining in cart: 16 median time: 5.4 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 5.4 seconds failed: 0.0 waiting for 20.0 of passengers before board, remaining in cart: 16 median time: 5.4 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 5.33 seconds failed: 0.0 waiting for 0.0 of passengers before board, remaining in cart: 16 median time: 5.2 rulebreakers: 0
+deadlockarray: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+timearray: [6.2, 5.8, 5.8, 5.4, 5.4, 5.2]
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 7.61 seconds failed: 0.0 waiting for 100.0 of passengers before board, remaining in cart: 32 median time: 7.2 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 99.73 Percentage alighted: 100.0 average time: 6.66 seconds failed: 0.01 waiting for 80.0 of passengers before board, remaining in cart: 32 median time: 6.6 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 99.87 Percentage alighted: 100.0 average time: 6.83 seconds failed: 0.01 waiting for 60.0 of passengers before board, remaining in cart: 32 median time: 6.6 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 99.87 Percentage alighted: 100.0 average time: 6.54 seconds failed: 0.01 waiting for 40.0 of passengers before board, remaining in cart: 32 median time: 6.4 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 100.0 Percentage alighted: 100.0 average time: 6.26 seconds failed: 0.0 waiting for 20.0 of passengers before board, remaining in cart: 32 median time: 6.2 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 99.73 Percentage alighted: 100.0 average time: 6.15 seconds failed: 0.01 waiting for 0.0 of passengers before board, remaining in cart: 32 median time: 6.2 rulebreakers: 0
+deadlockarray: [0.0, 0.01, 0.01, 0.01, 0.0, 0.01]
+timearray: [7.2, 6.6, 6.6, 6.4, 6.2, 6.2]
+boarding: 5 alighting: 5 Percentage Boarded: 99.6 Percentage alighted: 100.0 average time: 10.35 seconds failed: 0.02 waiting for 100.0 of passengers before board, remaining in cart: 48 median time: 9.2 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 98.8 Percentage alighted: 100.0 average time: 8.36 seconds failed: 0.06 waiting for 80.0 of passengers before board, remaining in cart: 48 median time: 8.0 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 99.47 Percentage alighted: 99.87 average time: 8.95 seconds failed: 0.03 waiting for 60.0 of passengers before board, remaining in cart: 48 median time: 8.2 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 99.47 Percentage alighted: 99.87 average time: 7.95 seconds failed: 0.03 waiting for 40.0 of passengers before board, remaining in cart: 48 median time: 7.6 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 98.8 Percentage alighted: 100.0 average time: 7.71 seconds failed: 0.06 waiting for 20.0 of passengers before board, remaining in cart: 48 median time: 7.4 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 99.73 Percentage alighted: 100.0 average time: 8.01 seconds failed: 0.01 waiting for 0.0 of passengers before board, remaining in cart: 48 median time: 7.4 rulebreakers: 0
+deadlockarray: [0.02, 0.06, 0.03, 0.03, 0.06, 0.01]
+timearray: [9.2, 8.0, 8.2, 7.6, 7.4, 7.4]
+boarding: 5 alighting: 5 Percentage Boarded: 97.47 Percentage alighted: 100.0 average time: 15.43 seconds failed: 0.11 waiting for 100.0 of passengers before board, remaining in cart: 64 median time: 12.2 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 97.2 Percentage alighted: 99.73 average time: 12.58 seconds failed: 0.15 waiting for 80.0 of passengers before board, remaining in cart: 64 median time: 11.0 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 95.2 Percentage alighted: 100.0 average time: 11.97 seconds failed: 0.22 waiting for 60.0 of passengers before board, remaining in cart: 64 median time: 10.2 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 95.33 Percentage alighted: 99.73 average time: 11.18 seconds failed: 0.22 waiting for 40.0 of passengers before board, remaining in cart: 64 median time: 10.0 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 94.93 Percentage alighted: 99.47 average time: 10.18 seconds failed: 0.24 waiting for 20.0 of passengers before board, remaining in cart: 64 median time: 9.8 rulebreakers: 0
+boarding: 5 alighting: 5 Percentage Boarded: 95.87 Percentage alighted: 99.87 average time: 11.54 seconds failed: 0.19 waiting for 0.0 of passengers before board, remaining in cart: 64 median time: 9.6 rulebreakers: 0
+deadlockarray: [0.11, 0.15, 0.22, 0.22, 0.24, 0.19]
+timearray: [12.2, 11.0, 10.2, 10.0, 9.8, 9.6]
+
+
+

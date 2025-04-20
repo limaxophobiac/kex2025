@@ -8,9 +8,59 @@ import math
 trainY = 7.0
 doorwith = 1.5
 boardsplit = 0.5
-pedradius = 0.3
+pedradius = 0.25
 
 #generates random sets of alighting and boarding passengers
+
+def gen_random_rightside(count, boardcount, frontcount, remaining_passengers):
+    passengers = []
+    for i in range(frontcount):
+        placed = False
+        while (not placed):
+            px = 9.5 - pedradius + random.random()
+            py = trainY - pedradius*3 - random.random()*pedradius*i
+            placed = True
+            for j in passengers:
+                if ((j[0] - px)**2 + (j[1] - py)**2 < pedradius**2):
+                    placed = False
+                    break
+        passengers.append([px, py, 0, 0.1, px, py, 1.35])
+
+    
+    for i in range(boardcount-frontcount):
+        px = 10.5 + (random.random()*pedradius if (i % 2 == 0) else pedradius*2 + random.random()*pedradius*0.5)
+        py = trainY - pedradius*2 - i*pedradius - (pedradius if i % 2 == 1 else 0)
+        vx = 0
+        vy = 0.1
+        gx = px
+        gy = py
+
+        passengers.append([px, py, vx, vy, gx, gy, 1.35])
+
+    for i in range(count - boardcount):
+        px = (10 + (i + 1)*pedradius) if (i % 2 == 0) else (10 - (i +1)*pedradius)
+        py = trainY + 0.5 + random.random()*(10 - 0.5 - trainY)
+        vx = 0.1 if (i % 2 == 1) else -0.1
+        vy = 0
+        gx = 10
+        gy = trainY + pedradius*2
+        passengers.append([px, py, vx, vy, gx, gy, 1.35])
+
+    for i in range(remaining_passengers):
+        placed = False
+        while (not placed):
+            px = 3 + random.random()*14
+            py = trainY + 0.5 + (10 - trainY - 1)*random.random()
+            placed = True
+            for j in passengers:
+                if ((j[0] - px)**2 + (j[1] - py)**2 < pedradius**2):
+                    placed = False
+                    break
+        passengers.append([px, py, 0, 0, px, py, 0.5])
+
+
+    return passengers 
+
 def gen_random_leftright(count, boardcount, frontcount, remaining_passengers):
     passengers = []
     for i in range(frontcount):
@@ -65,6 +115,7 @@ def startAlighting(old, boardcount, rulebreaking):
         p[i][3] = 0.1
         p[i][6] = 1.35
         p[i][5] = 5.5
+        p[i][4] = 10
 
     for i in range(rulebreaking):
         p[i][2] = 0
@@ -84,7 +135,7 @@ def startBoarding(old, boardcount, rulebreaking):
         p[i][3] = 0.1
         p[i][6] = 1.35
     for i in range(rulebreaking, boardcount):
-        p[i][4] = 10
+        p[i][4] = 10 - pedradius*2 #Only for right board
         p[i][5] = trainY + pedradius*6
 
     return p
@@ -137,6 +188,8 @@ if __name__ == "__main__":
     poststeps = 300
     rulebreaking = 0
     max_passengers = 80
+    waitpercent = 1.0
+    rulebreaking = 0
     
     
 
@@ -150,12 +203,15 @@ if __name__ == "__main__":
     # initiate the simulator,
     for p in range(5):
         remaining_passengers = round(max_passengers*0.2*p)
-        waitpercent = 0.7
+        arrDeadlock = []
+        arrTime = []
+        waitpercent = 1.0
+        
         for sim in range(6):
-            rulebreaking = round(boarding*0.2*sim)
             stats = []
+            
             for i in range(150):
-                passengers2 = gen_random_leftright(boarding + alighting, boarding, rulebreaking, remaining_passengers)
+                passengers2 = gen_random_rightside(boarding + alighting, boarding, rulebreaking, remaining_passengers)
                 initial_state = np.array(passengers2)
                 groups = []
                 for i in range(boarding + alighting):
@@ -211,7 +267,7 @@ if __name__ == "__main__":
                             changed = True
                             alighted += 1
                     for j in range (boarding):
-                        if s.peds.ped_states[-1][j][1] > trainY + pedradius and s.peds.ped_states[-1][j][4] == 10:
+                        if s.peds.ped_states[-1][j][1] > trainY + pedradius and s.peds.ped_states[-1][j][4] == 10 - pedradius*2:
                             s.peds.ped_states[-1][j][5] = 9
                             s.peds.ped_states[-1][j][4] = (7 if j % 2 == 0 else 13)
                             changed = True
@@ -232,12 +288,21 @@ if __name__ == "__main__":
 
                 data = get_end_data(s.peds.ped_states[-1], boarding, actualSteps/5)
 
-                #print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " seconds")
+               # print("Boarded: " + str(data[0]) + " Alighted: " + str(data[1]) + " in " + str(data[2]) + " seconds")
                 stats.append(data)
-                #with psf.plot.SceneVisualizer(s, "images/traintest" + str(boarding + alighting) + "new") as sv:
-                #   sv.animate()
+               # with psf.plot.SceneVisualizer(s, "images/traintest" + str(boarding + alighting) + "new") as sv:
+               #    sv.animate()
 
             statistics = get_statistics(stats, boarding, alighting, 60)
             print("boarding: " + str(boarding) + " alighting: " + str(alighting) + " Percentage Boarded: " + str(round(statistics[0]*100, 2)) + " Percentage alighted: " + str(round(statistics[1]*100,2)) + " average time: " + str(round(statistics[3], 2)) + " seconds" + " failed: " + str(round(statistics[2], 2)) + " waiting for " + str(round(waitpercent*100, 2)) + " of passengers before board, remaining in cart: " + str(remaining_passengers) +" median time: " + str(round(statistics[4],2)) + " rulebreakers: " + str(rulebreaking))
+            arrDeadlock.append(round(statistics[2], 2))
+            arrTime.append(round(statistics[4],2))
+            waitpercent -= 0.2
+
+        print("deadlockarray: " + str(arrDeadlock))
+        print("timearray: " + str(arrTime))
+            
+
+        
 
 
