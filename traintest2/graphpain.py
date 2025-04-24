@@ -7,7 +7,7 @@ X = np.arange(0, math.pi*2, 0.05)
 y = np.sin(X)
 z = np.cos(X)
 
-waited_for = [100, 80, 60, 40, 20, 0]
+waited_for = [1.0, 0.8, 0.6, 0.4, 0.2, 0]
 
 all_wait_b15_a15_r0_t = [17.0, 15.0, 15.2, 16.0, 16.2, 16.2]
 all_wait_b15_a15_r16_t = [21.2, 18.6, 18.2, 19.0, 18.8, 18.8]
@@ -51,22 +51,22 @@ all_wait_b15_a15_r32_t = [26.6, 23.0, 22.6, 22.4, 22.8, 23.2]
 all_wait_b15_a15_r48_t = [35.2, 30.4, 28.2, 29.8, 30.6, 30.6]
 all_wait_b15_a15_r64_t = [48.6, 45.0, 42.4, 43.2, 44.4, 44.4]
 
-rulebreaking = [0, 1, 2, 3, 4, 5]
+rulebreaking = [0, 3, 6, 9, 12, 15]
 
-b15_a15_r0_rb0_t = [15.0, 15.8, 15.6, 15.6, 15.4, 15.0]
-b15_a15_r0_rb0_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+b15_a15_r0_rb_t = [15.0, 15.8, 15.6, 15.6, 15.4, 15.0]
+b15_a15_r0_rb_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
-b15_a15_r16_0rb_t = [18.6, 18.6, 18.8, 18.8, 18.2, 18.6]
-b15_a15_r16_0rb_d = [0.01, 0.01, 0.01, 0.01, 0.02, 0.03]
+b15_a15_r16_rb_t = [18.6, 18.6, 18.8, 18.8, 18.2, 18.6]
+b15_a15_r16_rb_d = [0.01, 0.01, 0.01, 0.01, 0.02, 0.03]
 
-b15_a15_r32_rb0_t = [22.6, 23.0, 24.2, 23.2, 23.8, 23.2]
-b15_a15_r32_rb0_d = [0.06, 0.04, 0.07, 0.09, 0.13, 0.23]
+b15_a15_r32_rb_t = [22.6, 23.0, 24.2, 23.2, 23.8, 23.2]
+b15_a15_r32_rb_d = [0.06, 0.04, 0.07, 0.09, 0.13, 0.23]
 
-b15_a15_r48_rb0_t = [28.6, 29.6, 30.8, 31.4, 31.6, 31.8]
-b15_a15_r48_rb0_d = [0.26, 0.21, 0.27, 0.32, 0.51, 0.63]
+b15_a15_r48_rb_t = [28.6, 29.6, 30.8, 31.4, 31.6, 31.8]
+b15_a15_r48_rb_d = [0.26, 0.21, 0.27, 0.32, 0.51, 0.63]
 
-b15_a15_r64_rb0_t = [40.4, 45.6, 46.4, 42.8, 48.4, 50.6]
-b15_a15_r64_rb0_d = [0.6, 0.58, 0.69, 0.73, 0.86, 0.91]
+b15_a15_r64_rb_t = [40.4, 45.6, 46.4, 42.8, 48.4, 50.6]
+b15_a15_r64_rb_d = [0.6, 0.58, 0.69, 0.73, 0.86, 0.91]
 
 b10_a10_r0_rb_t = [9.8, 9.4, 9.2, 9.2, 8.8, 8.6]
 b10_a10_r0_rb_d = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
@@ -149,37 +149,37 @@ all_right_b15_a15_r48_d = [0.22, 0.37, 0.45, 0.52, 0.63, 0.59]
 all_right_b15_a15_r64_t = [50.0, 44.2, 41.8, 40.8, 45.4, 47.8]
 all_right_b15_a15_r64_d = [0.56, 0.65, 0.77, 0.83, 0.88, 0.93]
 
-#plt.plot(waited_for, all_right_b10_a10_r0_t, '.', label= '0r')
-#plt.plot(waited_for, all_right_b10_a10_r16_t, '.', label= '16r')
-#plt.plot(waited_for, all_right_b10_a10_r32_t, '.', label= '32r')
-#plt.plot(waited_for, all_right_b10_a10_r48_t, '.', label= '48r')
-#plt.plot(waited_for, all_right_b10_a10_r64_t, '.', label= '64r')
+plt.plot(rulebreaking, b15_a15_r0_rb_d, '.')
+plt.plot(rulebreaking, b15_a15_r16_rb_d, '.')
+plt.plot(rulebreaking, b15_a15_r32_rb_d, '.')
+plt.plot(rulebreaking, b15_a15_r48_rb_d, '.')
+plt.plot(rulebreaking, b15_a15_r64_rb_d, '.')
 
-xval = np.linspace(waited_for[0], waited_for[-1], num=100)
+xval = np.linspace(rulebreaking[0], rulebreaking[-1], num=100)
 
-lin0 = np.polyfit(waited_for, all_right_b5_a5_r0_d, 3)
+lin0 = np.polyfit(rulebreaking, b15_a15_r0_rb_d, 3)
 poly0 = np.polyval(lin0, xval)
 
-lin16 = np.polyfit(waited_for, all_right_b5_a5_r16_d, 3)
+lin16 = np.polyfit(rulebreaking, b15_a15_r16_rb_d, 3)
 poly16 = np.polyval(lin16, xval)
 
-lin32 = np.polyfit(waited_for, all_right_b5_a5_r32_d, 3)
+lin32 = np.polyfit(rulebreaking, b15_a15_r32_rb_d, 3)
 poly32 = np.polyval(lin32, xval)
 
-lin48 = np.polyfit(waited_for, all_right_b5_a5_r48_d, 3)
+lin48 = np.polyfit(rulebreaking, b15_a15_r48_rb_d, 3)
 poly48 = np.polyval(lin48, xval)
 
-lin64 = np.polyfit(waited_for, all_right_b5_a5_r64_d, 3)
+lin64 = np.polyfit(rulebreaking, b15_a15_r64_rb_d, 3)
 poly64 = np.polyval(lin64, xval)
 
-plt.plot(xval, poly0, '-', label='0rPoly')
-plt.plot(xval, poly16, '-', label='16rPoly')
-plt.plot(xval, poly32, '-', label='32rPoly')
-plt.plot(xval, poly48, '-', label='48rPoly')
-plt.plot(xval, poly64, '-', label='64rPoly')
+plt.plot(xval, poly0, '-', label= 'R = 0')
+plt.plot(xval, poly16, '-', label= 'R = 16')
+plt.plot(xval, poly32, '-', label= 'R = 32')
+plt.plot(xval, poly48, '-', label= 'R = 48')
+plt.plot(xval, poly64, '-', label= 'R = 64')
 
-plt.xlabel("N")
-plt.ylabel("deadlock chance")
+plt.xlabel("Rulebreakers")
+plt.ylabel("Probability of Deadlock")
 
 plt.legend()
 plt.show()

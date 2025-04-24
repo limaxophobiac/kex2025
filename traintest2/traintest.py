@@ -49,7 +49,7 @@ def gen_random_rightside(count, boardcount, frontcount, remaining_passengers):
     for i in range(remaining_passengers):
         placed = False
         while (not placed):
-            px = 3 + random.random()*14
+            px = 3 + random.random()*15
             py = trainY + 0.5 + (10 - trainY - 1)*random.random()
             placed = True
             for j in passengers:
@@ -96,7 +96,7 @@ def gen_random_leftright(count, boardcount, frontcount, remaining_passengers):
     for i in range(remaining_passengers):
         placed = False
         while (not placed):
-            px = 3 + random.random()*14
+            px = 3 + random.random()*15
             py = trainY + 0.5 + (10 - trainY - 1)*random.random()
             placed = True
             for j in passengers:
